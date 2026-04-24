@@ -1,6 +1,9 @@
 # Binary
 ntfs-tool
 
+# GoReleaser
+dist/
+
 # Go
 *.exe
 *.exe~

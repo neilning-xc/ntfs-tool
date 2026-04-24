@@ -4,6 +4,27 @@ macOS NTFS 读写挂载命令行工具。
 
 macOS 默认以只读方式挂载 NTFS 格式的移动硬盘，本工具借助 macFUSE + ntfs-3g 实现读写挂载。
 
+## 安装
+
+### 通过 Homebrew（推荐）
+
+```bash
+brew install neilning-xc/tap/ntfs-tool
+```
+
+安装后还需要设置 macFUSE 和 ntfs-3g 依赖，参考下方「依赖安装」部分。
+
+### 从源码编译
+
+需要 Go 1.21+：
+
+```bash
+git clone https://github.com/neilning-xc/ntfs-tool.git
+cd ntfs-tool
+CGO_ENABLED=0 go build -o ntfs-tool .
+sudo cp ntfs-tool /usr/local/bin/
+```
+
 ## 依赖安装
 
 ### 1. 安装 macFUSE
@@ -37,20 +58,6 @@ brew install gromgit/fuse/ntfs-3g-mac
 ```bash
 kextstat | grep fuse    # 检查 macFUSE 内核扩展是否加载
 ntfs-3g --version       # 检查 ntfs-3g 是否安装
-```
-
-## 编译
-
-需要 Go 1.21+：
-
-```bash
-CGO_ENABLED=0 go build -o ntfs-tool .
-```
-
-可选：将编译后的二进制移动到 PATH 中：
-
-```bash
-sudo cp ntfs-tool /usr/local/bin/
 ```
 
 ## 使用
