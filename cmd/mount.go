@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/neil/ntfs-tool/internal"
+	"github.com/neilning-xc/ntfs-tool/internal"
 	"github.com/spf13/cobra"
 )
 

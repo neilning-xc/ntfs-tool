@@ -1,6 +1,6 @@
 package main
 
-import "github.com/neil/ntfs-tool/cmd"
+import "github.com/neilning-xc/ntfs-tool/cmd"
 
 func main() {
 	cmd.Execute()

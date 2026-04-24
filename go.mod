@@ -1,4 +1,4 @@
-module github.com/neil/ntfs-tool
+module github.com/neilning-xc/ntfs-tool
 
 go 1.21.3
 
