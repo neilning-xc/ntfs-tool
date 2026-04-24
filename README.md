@@ -108,6 +108,73 @@ sudo ntfs-tool unmount --all
 2. 卸载 macOS 默认的只读挂载
 3. 使用 `ntfs-3g` 以读写模式重新挂载到 `/Volumes/<卷标名>`
 
+## 发布新版本
+
+### 前置条件
+
+- 安装 [GoReleaser](https://goreleaser.com)：`brew install goreleaser`
+- 安装 [GitHub CLI](https://cli.github.com)：`brew install gh`
+- 完成 GitHub 认证：`gh auth login`
+
+### 发布流程
+
+#### 1. 提交所有改动并推送
+
+```bash
+git add .
+git commit -m "feat: your changes"
+git push origin main
+```
+
+#### 2. 打标签并推送
+
+```bash
+git tag v0.2.0
+git push origin v0.2.0
+```
+
+推送标签后，GitHub Actions 会自动执行 GoReleaser 构建 darwin amd64/arm64 二进制，并创建 GitHub Release。
+
+#### 3. 获取 SHA256 校验值
+
+等待 GitHub Actions 完成后，下载校验文件：
+
+```bash
+gh release download v0.2.0 --pattern "checksums.txt" --output -
+```
+
+输出示例：
+
+```
+<amd64_sha256>  ntfs-tool_0.2.0_darwin_amd64.tar.gz
+<arm64_sha256>  ntfs-tool_0.2.0_darwin_arm64.tar.gz
+```
+
+#### 4. 更新 Homebrew Formula
+
+编辑 [homebrew-tap](https://github.com/neilning-xc/homebrew-tap) 仓库中的 `Formula/ntfs-tool.rb`，更新 `version` 和两个 `sha256` 值：
+
+```ruby
+version "0.2.0"
+
+# arm64
+sha256 "<arm64_sha256>"
+
+# amd64
+sha256 "<amd64_sha256>"
+```
+
+提交并推送到 `homebrew-tap` 仓库即可。
+
+#### 5. 验证安装
+
+```bash
+brew update
+brew upgrade ntfs-tool
+# 或首次安装
+brew install neilning-xc/tap/ntfs-tool
+```
+
 ## 常见问题
 
 **Q: 提示「未检测到 FUSE 框架」**
