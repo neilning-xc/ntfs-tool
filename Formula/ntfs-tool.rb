@@ -7,10 +7,10 @@ class NtfsTool < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/neilning-xc/ntfs-tool/releases/download/v#{version}/ntfs-tool_#{version}_darwin_arm64.tar.gz"
-      sha256 "PLACEHOLDER_ARM64_SHA256"
+      sha256 "b493726d84c0afbaa2b11f7909e49ff64616ffaeb6a903071ad51f66a21104b3"
     elsif Hardware::CPU.intel?
       url "https://github.com/neilning-xc/ntfs-tool/releases/download/v#{version}/ntfs-tool_#{version}_darwin_amd64.tar.gz"
-      sha256 "PLACEHOLDER_AMD64_SHA256"
+      sha256 "6d3c87a307c25d691788c053d2fbb82d8949498d7d4d1cd86b3ffc9eaed1a994"
     end
   end
 
