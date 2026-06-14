@@ -188,3 +188,32 @@ brew install neilning-xc/tap/ntfs-tool
 **Q: 提示「需要 root 权限」**
 
 挂载和卸载操作需要 sudo：`sudo ntfs-tool mount --all`。
+
+## 卸载
+
+### 卸载 ntfs-tool
+
+```bash
+# 通过 Homebrew 安装的
+brew uninstall ntfs-tool
+
+# 手动安装的
+sudo rm /usr/local/bin/ntfs-tool
+```
+
+### 卸载依赖
+
+```bash
+# 卸载 ntfs-3g
+brew uninstall gromgit/fuse/ntfs-3g-mac
+
+# 卸载 macFUSE
+brew uninstall --cask macfuse
+```
+
+如果使用的是 FUSE-T：
+```bash
+brew uninstall --cask fuse-t
+```
+
+卸载 macFUSE/FUSE-T 后建议重启，确保内核扩展完全移除。
